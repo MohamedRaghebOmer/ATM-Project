@@ -151,7 +151,3 @@ This project is provided under the **MIT License** — feel free to reuse and ad
 Mohamed Ragheb Omar
 
 ---
-
-### Contact / Questions
-
-If you want the README translated to Arabic, converted to a HTML page, or packaged as a downloadable `README.md` file, tell me and I will prepare it.
