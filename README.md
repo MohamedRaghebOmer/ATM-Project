@@ -1,153 +1,67 @@
-# Simple ATM Console Application
+# 🏦 ATM Management System (Procedural C++)
 
-A simple C++ console-based ATM application that uses a text file (`Clients.txt`) to store client records. This project demonstrates basic file I/O, struct usage, menu-driven interaction, and simple validation logic — suitable for Advanced learning C++ and console applications.
+A robust, console-based **ATM Simulation** that manages bank accounts and transactions through persistent file storage. 
 
----
+### 🚀 The Challenge
+This project was developed after mastering the **C++ Fundamentals** and **File Handling**. It showcases the ability to build a complex system using **Procedural Programming** only. 
 
-## Features
-
-* Login by **Account Number** and **PIN** (5 attempts limit)
-* Quick withdraw with predefined amounts (20, 50, 100, 200, 400, 600, 800, 1000)
-* Normal withdraw (must be a multiple of 5 and <= account balance)
-* Deposit (must be a positive integer)
-* Check balance
-* Data persistence using a text file (`Clients.txt`) with a custom separator
+The main challenge was managing data (Reading/Updating/Deleting) in text files and maintaining state throughout the application without the use of Object-Oriented Programming (OOP) or advanced databases.
 
 ---
 
-## Project Structure
+## 🛠 Features
 
-* `main.cpp` — Contains the full ATM console application code.
-* `Clients.txt` — Data file storing clients; each line represents a client record.
-
-> The project is purposely single-file and minimal to keep it easy to inspect and modify.
-
----
-
-## Clients File Format (`Clients.txt`)
-
-Each client is stored on a single line using the separator `#//#` with the following fields, in order:
-
-1. AccountNumber (string)
-2. PINCode (string)
-3. Name (string)
-4. Phone (string)
-5. AccountBalance (double)
-
-**Example line:**
-
-```
-1001#//#1234#//#Mohamed Ragheb Omar#//#0123456789#//#7500.00
-```
-
-> Notes:
->
-> * The code parses each line using the `#//#` separator. Keep this separator intact.
-> * `AccountBalance` is parsed as a `double` using `std::stod`.
+- **🔐 Secure Login:** - Validates Account Number and PIN.
+  - Limits login attempts (Security feature: 5 failed attempts lockout).
+- **💸 Transaction Management:**
+  - **Quick Withdraw:** Fixed amounts for faster UX.
+  - **Normal Withdraw:** Custom amounts with balance sufficiency checks.
+  - **Deposit:** Real-time balance updates.
+- **📊 Account Services:** - Check balance instantly.
+  - Data persistence: All changes are saved to `Clients.txt` immediately.
+- **💻 Clean UI:** Modularized console screens with clear navigation.
 
 ---
 
-## Requirements
+## 🏗 Built With (The Fundamentals)
 
-* Windows OS (tested on Windows 10/11)
-* Visual Studio Community 2022 (or any C++ compiler supporting C++11 or later)
-
----
-
-## Build & Run (Visual Studio Community 2022)
-
-1. Open Visual Studio Community 2022.
-2. Create a new **Console App** (C++).
-3. Replace the generated `main.cpp` contents with the provided source code.
-4. Make sure `Clients.txt` is placed in the same folder as the executable (or project working directory). You can add `Clients.txt` to the project for convenience.
-5. Build the project (`Build > Build Solution`) and run (`Debug > Start Without Debugging` or press `Ctrl+F5`).
-
-Alternative CLI compile (Developer Command Prompt):
-
-```
-cl /EHsc main.cpp
-main.exe
-```
+Since this project was built **pre-OOP**, it relies on:
+- **Structs:** For organizing client data (Account, PIN, Balance, etc.).
+- **Vectors:** For in-memory data manipulation before syncing with files.
+- **File Handling (`fstream`):** To ensure data isn't lost after closing the program.
+- **Pass-by-Reference:** To optimize performance and modify data across functions.
+- **String Parsing:** Custom logic to split and process line-based data.
 
 ---
 
-## How to Use
+## 📂 Project Structure
 
-* Run the program.
-* Enter your **Account Number** and **PIN**.
-* If credentials are valid you will see the ATM main menu:
-
-  * 1 — Quick Withdraw
-  * 2 — Normal Withdraw
-  * 3 — Deposit
-  * 4 — Check Balance
-  * 5 — Logout
-
-### Quick Withdraw
-
-Choose one of the predefined options. The program will ask for confirmation before completing the transaction.
-
-### Normal Withdraw
-
-Enter an amount that is a multiple of 5 and less than or equal to your balance.
-
-### Deposit
-
-Enter a positive amount (integer). Confirm to add to the balance.
+- `ATM.cpp`: The core engine containing the logic for login, transactions, and file sync.
+- `Clients.txt`: The database (Text-based) where all client records are stored.
 
 ---
 
-## Important Implementation Details & Behaviour
+## 🚀 How to Run
 
-* Login attempts are limited to **5**. After that the login fails.
-* The application saves client records back to `Clients.txt` after every deposit/withdraw by rewriting the file.
-* The application stores PIN codes in plain text in `Clients.txt`. **This is not secure** and shouldn't be used in production.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YourUsername/ATM-System-Core-CPP.git](https://github.com/YourUsername/ATM-System-Core-CPP.git)
+   ```
+2. Ensure Clients.txt is in the same directory as your source code.
+
+3. Compile:
+   ```bash
+   g++ ATM.cpp -o ATM_System
+   ```
+4. Run:
+   ```bash
+   ./ATM_System
+   ```
+---
+
+👨‍💻 Author
+Mohamed Ragheb Mastering the foundations to build better architectures.
 
 ---
 
-## Suggested Improvements (Nice-to-have)
-
-* Store PINs hashed (e.g. use salted hashing) instead of plain text.
-* Implement an admin mode for creating/updating/deleting clients.
-* Replace the text-file storage with a lightweight database (SQLite).
-* Add input sanitization for names/phones and improved error handling.
-* Improve user interface and localization (support multiple languages).
-
----
-
-## Known Issues / Limitations
-
-* Plain text PIN storage (security risk).
-* No concurrency control — simultaneous runs may cause data races when writing the file.
-* Phone and name fields are not validated beyond being stored as strings.
-* Deleting clients uses `MarkForDelete` but no UI is provided in the current code to set this flag.
-
----
-
-## Sample `Clients.txt` (3 sample users)
-
-```
-1001#//#1234#//#Mohamed Ragheb Omar#//#0123456789#//#7500.00
-1002#//#4321#//#Alaa Mahmoud#//#01011112222#//#1500.50
-1003#//#9999#//#Sara Ali#//#01122334455#//#250.75
-```
-
----
-
-## Contribution
-
-If you'd like to contribute or suggest features, feel free to open issues or send pull requests. Keep changes focused and document any new functions or data formats.
-
----
-
-## License
-
-This project is provided under the **MIT License** — feel free to reuse and adapt the code. Include attribution if you plan to publish derivative work.
-
----
-
-## Author
-
-Mohamed Ragheb Omar
-
----
+If you find this procedural implementation helpful, feel free to give it a ⭐!
