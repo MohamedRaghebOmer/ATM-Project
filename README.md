@@ -3,7 +3,7 @@
 A robust, console-based **ATM Simulation** that manages bank accounts and transactions through persistent file storage. 
 
 ### 🚀 The Challenge
-This project was developed after mastering the **C++ Fundamentals** and **File Handling**. It showcases the ability to build a complex system using **Procedural Programming** only. 
+This project was developed after mastering the **C++ Fundamentals** and **File Handling**. It showcases the ability to build a complex system using **Procedural Programming** only.
 
 The main challenge was managing data (Reading/Updating/Deleting) in text files and maintaining state throughout the application without the use of Object-Oriented Programming (OOP) or advanced databases.
 
